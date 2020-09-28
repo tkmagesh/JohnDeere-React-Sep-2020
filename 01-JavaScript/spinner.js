@@ -38,7 +38,6 @@ var spinner = (function (){
     }
 })();
 
-
 function spinnerFactory(){
     var counter = 0;
 
