@@ -1,3 +1,9 @@
+Adv
+    counter is protected
+Disadv
+    Inefficient memory usage
+
+/* 
 function Spinner(){
     var counter = 0;
 
@@ -8,4 +14,24 @@ function Spinner(){
     this.down = function(){
         return --counter;
     }
+} 
+*/
+
+Adv
+    Efficient memory usage
+Disadv
+    counter is not private anymore
+
+
+function Spinner(){
+    this.__counter__ = 0;
 }
+
+Spinner.prototype.up = function(){
+    return ++this.__counter__;
+}
+
+Spinner.prototype.down = function(){
+    return --this.__counter__;
+}
+

@@ -88,3 +88,16 @@ Constructor Functions
 
     convention -> constructor function name starts with an uppercase letter
 
+    constructor -> attrbute of the object that maintains the reference to the constructor function
+
+
+Inheritence (Prototypal)
+
+
+Hiding is costly!!
+
+Day-1 self study
+    'bind' method of a function
+    map, reduce, forEach, filter methods of array
+
+    
