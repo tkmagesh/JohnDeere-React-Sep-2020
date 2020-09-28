@@ -35,6 +35,10 @@ JavaScript
 
             - apply method
 
+            - immediately invoked function expression
+
+            - using the 'new' keyword
+
         Functions are variadic by default
             arguments 
                 - array like object
@@ -76,24 +80,11 @@ Closure
     clickTracker.html
 
 
-var spinner = /* ..... */
-up(), down()
+Constructor Functions
 
-spinner.up() //=> 1
-spinner.up() //=> 2
-spinner.up() //=> 3
-spinner.up() //=> 4
+    when a function is invoked using the 'new' keyword
+        this -> new object
+        this -> returned by default
 
-spinner.down() //=> 3
-spinner.down() //=> 2
-spinner.down() //=> 1
-spinner.down() //=> 0
+    convention -> constructor function name starts with an uppercase letter
 
-spinner.counter = 10000;
-
-spinner.up()
-
-
-function add(x,y){
-    return x + y;
-}
