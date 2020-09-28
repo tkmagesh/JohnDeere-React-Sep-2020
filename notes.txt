@@ -1,0 +1,72 @@
+Day - 01
+    RIA (Rich Internet Application)
+
+JavaScript
+    DataTypes
+        number, boolean, string
+        undefined, object, function
+
+    Programming Constructs
+        var, if else, switch case, while, for, try catch finally, throw, function
+
+    APIs
+        Array, Math, RegEx, setTimeout, clearTimeout, setInterval, clearInterval, Error
+
+    misc
+
+        - loosely typed
+        - dynamic
+        - functional
+
+        - 'this' context
+
+        It doesnt not matter where the function is OR who owns the function
+        What matters is HOW THE FUNCTION IS INVOKED
+
+        When a function is invoked
+
+            - As a method of an object
+                this -> object
+
+            - As a function
+                this -> global scope (window)
+
+            - call method
+
+            - apply method
+
+        Functions are variadic by default
+            arguments 
+                - array like object
+                    - individual arguments can be accessed using the indexer
+                            arguments[0]
+                            arguments[1]
+                            arguments[2]
+                    - use the 'length' attribute to find the number of arguments
+
+
+add(10,20)
+add(10,'20')
+add(10,'abc')
+add([10,20],[30,40])
+add([10,20],[30,'40'])
+add([10,20],[30,'abc'])
+add([10,20],[30,[40,'abc']])
+add(function(){ return 10; }, function(){ return 20; })
+add(function(){ return [10,20]; }, function(){ return [30,[40,'abc']]; })
+add(function(){ return function(){ return 10; }})
+add([function(){ return [10,20]; }, function(){ return [30,[40,'abc']]; }])
+add(function(){ return [function(){ return [10,20]; }, function(){ return [30,[40,'abc']]; }]})
+add(10)
+add(10,20,30,40,50)
+add()
+
+function add(){
+    var result = 0;
+    function parseArg(n){
+        if (typeof n === 'function') return parseArg(n());
+        if (Array.isArray(n)) return add.apply(this, n);
+        return isNaN(n) ? 0 : parseInt(n);
+    }
+    return arguments.length <= 1 ? parseArg(arguments[0]) : parseArg(arguments[0]) + add(Array.prototype.slice.call(arguments, 1));
+}
