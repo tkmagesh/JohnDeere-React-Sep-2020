@@ -40,15 +40,15 @@
             };
 
             var _changeListners = {
-                basic: null,
-                hra: null,
-                da: null,
-                tax: null,
-                salary: null
+                basic: [],
+                hra: [],
+                da: [],
+                tax: [],
+                salary: []
             };
 
             this.subscribe = function(attrName, listenerFn){
-                _changeListners[attrName] = listenerFn;
+                _changeListners[attrName].push(listenerFn);
             };
 
             this.get = function(attrName){
@@ -58,9 +58,11 @@
             this.set = function(attrName, value){
                 if (_data[attrName] === value) return;
                 _data[attrName] = value;
-                var listenerFn = _changeListners[attrName];
-                if (typeof listenerFn === 'function') 
-                    listenerFn();
+                var listenerFns = _changeListners[attrName];
+                listenerFns.forEach(function(listenerFn){
+                    if (typeof listenerFn === 'function') 
+                        listenerFn();
+                });
             };
         }
         SalaryCalculatorModel.prototype.calculate = function(){
