@@ -1,7 +1,8 @@
 let StateMangager = (function(){
     let _currentState = undefined,
         _callbacks = [],
-        _reducer = undefined;
+        _reducer = undefined,
+        _init_action = { type : '$$INIT_STATE'}
 
     function getState(){
         return _currentState;
@@ -24,6 +25,7 @@ let StateMangager = (function(){
 
     function createStore(reducer){
         _reducer = reducer;
+        _currentState = _reducer(undefined, _init_action);
         let store = { getState, subscribe, dispatch };
         return store;
     }
