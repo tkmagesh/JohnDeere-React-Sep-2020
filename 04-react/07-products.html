@@ -28,7 +28,9 @@
 
             onAddNewClick = () => {
                 const { productNames, newProductName } = this.state;
-                this.setState({ productNames : [...productNames, newProductName]});
+                const newProductList = [...productNames, newProductName];
+                this.setState({ productNames : newProductList});
+                this.props.onListChange(newProductList);
             }
             render() {
                 const { productNames } = this.state;
@@ -47,12 +49,24 @@
                 )
             }
         }
+
+        class App extends React.Component{
+            state = { productNames : [] };
+            onListChange = (productNames) => {
+                this.setState({productNames : productNames });
+            }
+            render(){
+                return (
+                    <div>
+                        <ProductsCount productNames={this.state.productNames} />
+                        <Products onListChange={ this.onListChange }/>
+                    </div>
+                )
+            }
+        }
         
         ReactDOM.render(
-            <div>
-                 <ProductsCount productNames={[]} />
-                 <Products/>
-            </div>
+            <App/>
         ,document.getElementById('root'))
     
     </script>
