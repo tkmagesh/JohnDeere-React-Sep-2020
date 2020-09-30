@@ -112,10 +112,13 @@
                             onValueChange={ val => model.set('da', val) }
                         />
                         
-                        <div className="field">
-                            <label htmlFor="">Tax :</label>
-                            <input type="range" value={tax} min="0" max="30"  onChange={ evt => model.set('tax', parseInt(evt.target.value)) }/>
-                        </div>
+                        <SalaryCalculatorInput 
+                            labelText="Tax :" 
+                            value={tax}
+                            onValueChange={ val => model.set('tax', val) }
+                            type="range" min="0" max="30"
+                        />
+
                         <div className="field">
                             <input type="button" value="Calculate" onClick={ () => model.calculate() }/>
                         </div>
@@ -128,11 +131,15 @@
 
         class SalaryCalculatorInput extends React.Component{
             render(){
-                const { labelText, value, onValueChange } = this.props;
+                const { labelText, value, onValueChange, type="number", ...restProps } = this.props;
                 return(
                     <div className="field">
                         <label htmlFor="">{labelText}</label>
-                        <input type="number" value={value} onChange={(evt) => onValueChange(parseInt(evt.target.value)) }/>
+                        <input type={type} 
+                            value={value} 
+                            onChange={(evt) => onValueChange(parseInt(evt.target.value)) }
+                            {...restProps}    
+                        />
                     </div>
                 )
             }
