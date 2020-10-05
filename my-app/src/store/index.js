@@ -13,6 +13,19 @@ function asyncMiddleware(store){
     }
 }
 
-const store = createStore(bugsReducer, applyMiddleware(asyncMiddleware));
+const loggerMiddleware = (store) => (next) => (action) => {
+    console.group(action.type);
+    console.group('Before -> ');
+    console.log(store.getState());
+    console.groupEnd();
+    console.log(action);
+    next(action);
+    console.group('After -> ');
+    console.log(store.getState());
+    console.groupEnd();
+    console.groupEnd();
+}
+
+const store = createStore(bugsReducer, applyMiddleware(loggerMiddleware, asyncMiddleware));
 
 export default store;
