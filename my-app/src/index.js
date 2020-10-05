@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import BugTracker from './bugTracker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BugTracker/>
   </React.StrictMode>,
   document.getElementById('root')
 );
