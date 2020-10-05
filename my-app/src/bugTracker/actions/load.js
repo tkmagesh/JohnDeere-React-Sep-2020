@@ -18,6 +18,6 @@ function getLocalBugs(){
 }
 export default function load(){
     const bugs = getLocalBugs();
-    const action = { type : 'BUGS_LOAD', payload = bugs };
+    const action = { type : 'BUGS_LOAD', payload : bugs };
     return action;
 }

@@ -1,15 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { bindActionCreators } from 'redux';
+ 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import BugTracker from './bugTracker';
+import store from './store';
+import bugActionCreators from './bugTracker/actions';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <BugTracker/>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
+
+function renderApp(){
+  const bugs = store.getState();
+  ReactDOM.render(
+    <React.StrictMode>
+      <BugTracker bugs={bugs} {...bugActionDispatchers} />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+
+renderApp();
+store.subscribe(renderApp);
 
 
 /* 
