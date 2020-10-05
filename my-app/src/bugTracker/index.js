@@ -20,7 +20,6 @@ class BugTracker extends Component{
           <div>
             <h1>Bug Tracker</h1>
             <hr />
-            <input type="button" value="LOAD" onClick={this.props.load} />
             <section className="stats">
               <span className="closed">1</span>
               <span> / </span>

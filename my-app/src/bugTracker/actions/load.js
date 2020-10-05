@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 function getLocalBugs(){
     return [
       {
@@ -16,8 +18,18 @@ function getLocalBugs(){
 
     ];
 }
+
+function getServerBugs(){
+  return axios
+    .get("http://localhost:3030/bugs")
+    .then(response => response.data);
+}
 export default function load(){
-    const bugs = getLocalBugs();
-    const action = { type : 'BUGS_LOAD', payload : bugs };
-    return action;
+  return function(dispatch){
+      const p = getServerBugs();
+      p.then(bugs => {
+        const action = { type: "BUGS_LOAD", payload: bugs };
+        dispatch(action);
+      });
+    }
 }

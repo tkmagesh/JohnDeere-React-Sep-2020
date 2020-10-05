@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
- 
+import axios from 'axios';
+
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import BugTracker from './bugTracker';
 import store from './store';
 import bugActionCreators from './bugTracker/actions';
+
+window['axios'] = axios;
 
 const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
 
