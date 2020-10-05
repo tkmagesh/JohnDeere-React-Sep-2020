@@ -24,7 +24,9 @@ function getServerBugs(){
     .get("http://localhost:3030/bugs")
     .then(response => response.data);
 }
-export default function load(){
+
+//using the asyncMiddleware
+/* export default function load(){
   return function(dispatch){
       const p = getServerBugs();
       p.then(bugs => {
@@ -32,4 +34,13 @@ export default function load(){
         dispatch(action);
       });
     }
-}
+} */
+
+//using the promiseMiddleware
+export default function load() {
+  const p = getServerBugs();
+  return p.then(bugs => {
+    const action = { type: "BUGS_LOAD", payload: bugs };
+    return action;
+  });
+};
