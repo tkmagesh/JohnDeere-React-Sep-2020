@@ -194,3 +194,7 @@ Presentation Component / Dumb component
     BugSort
     BugList
     BugItem
+
+Assignment
+    Implement "listing, adding and removing projects"
+    

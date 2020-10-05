@@ -9,8 +9,6 @@ import BugTracker from './bugTracker';
 import store from './store';
 import bugActionCreators from './bugTracker/actions';
 
-window['axios'] = axios;
-
 const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
 
 function renderApp(){
