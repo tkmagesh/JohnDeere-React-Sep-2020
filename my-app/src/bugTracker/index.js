@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import './index.css';
 
 class BugTracker extends Component{
+    state = {
+      newBugName : ''
+    };
+
     componentDidMount(){
         this.props.load();
     }
     render(){
-        const { bugs } = this.props;
+        const { bugs, addNew, toggle, remove, removeClosed } = this.props;
         const bugItems = bugs.map(bug => (
           <li key={bug.id}>
-            <span className={"bugname " + (bug.isClosed ? "closed" : "")}>
+            <span 
+              className={"bugname " + (bug.isClosed ? "closed" : "")}
+              onClick={ () => toggle(bug) }
+            >
                 {bug.name}
             </span>
             <div className="datetime">{bug.createdAt.toString()}</div>
-            <input type="button" value="Remove" />
+            <input type="button" value="Remove" onClick={ () => remove(bug) } />
           </li>
         ));
         return (
@@ -38,14 +45,14 @@ class BugTracker extends Component{
             </section>
             <section className="edit">
               <label htmlFor="">Bug Name :</label>
-              <input type="text" name="" id="" />
-              <input type="button" value="Add New" />
+              <input type="text" onChange={ evt => this.setState({newBugName : evt.target.value})} />
+              <input type="button" value="Add New" onClick={() => addNew(this.state.newBugName)} />
             </section>
             <section className="list">
               <ol>
                 {bugItems}
               </ol>
-              <input type="button" value="Remove Closed" />
+              <input type="button" value="Remove Closed" onClick={removeClosed} />
             </section>
           </div>
         );

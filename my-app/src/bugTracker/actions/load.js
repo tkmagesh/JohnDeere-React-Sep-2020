@@ -1,4 +1,4 @@
-import axios from 'axios';
+/* import axios from 'axios';
 
 function getLocalBugs(){
     return [
@@ -23,7 +23,7 @@ function getServerBugs(){
   return axios
     .get("http://localhost:3030/bugs")
     .then(response => response.data);
-}
+} */
 
 //using the asyncMiddleware
 /* export default function load(){
@@ -36,11 +36,14 @@ function getServerBugs(){
     }
 } */
 
+import bugApi from '../services/bugApi';
+
 //using the promiseMiddleware
 export default function load() {
-  const p = getServerBugs();
-  return p.then(bugs => {
-    const action = { type: "BUGS_LOAD", payload: bugs };
-    return action;
-  });
+  return bugApi
+    .getAll()
+    .then(bugs => {
+      const action = { type: "BUGS_LOAD", payload: bugs };
+      return action;
+    });
 };
