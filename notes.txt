@@ -181,3 +181,16 @@ src
     /store
         index.js
         
+
+Container Component / Smart Component
+    (This interacts with the redux infrastructure)
+    BugTracker
+
+Presentation Component / Dumb component
+    (This gets the data and actions from the container component)
+    This doesnt interact with the redux infrastructure
+    BugStats
+    BugEdit
+    BugSort
+    BugList
+    BugItem
