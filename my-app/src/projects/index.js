@@ -11,7 +11,7 @@ class Projects extends Component{
         const { projects } = this.props,
           projectItems = projects.map(project => (
             <li key={project.id}>
-              <span>{project.name}</span>
+              <span>{project.name} - ({project.bugsCount})</span>
             </li>
           ));
         return(
@@ -27,8 +27,17 @@ class Projects extends Component{
 }
 
 function mapStateToProps(storeState){
-  const projects = storeState.projectsState;
-  return {projects : projects}
+  const projects = storeState.projectsState,
+    bugs = storeState.bugsState
+  return {
+    projects: projects.map(project => ({
+      ...project,
+      bugsCount: bugs.reduce(
+        (result, bug) => (bug.projectId == project.id ? result + 1 : result),
+        0
+      )
+    }))
+  };
 }
 
 function mapDispatchToProps(dispatch){

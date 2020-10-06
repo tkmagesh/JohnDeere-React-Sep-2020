@@ -8,7 +8,7 @@ export default function BugItem(props){
           className={"bugname " + (bug.isClosed ? "closed" : "")}
           onClick={() => toggle(bug)}
         >
-          {bug.name}
+          {bug.name} - [{bug.projectId}]
         </span>
         <div className="datetime">{bug.createdAt.toString()}</div>
         <input type="button" value="Remove" onClick={() => remove(bug)} />

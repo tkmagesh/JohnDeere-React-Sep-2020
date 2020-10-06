@@ -14,14 +14,14 @@ class BugTracker extends Component{
         this.props.load();
     }
     render(){
-        const { bugs, addNew, toggle, remove, removeClosed } = this.props;
+        const { bugs, addNew, toggle, remove, removeClosed, projects } = this.props;
         return (
           <div>
             <h3>Bug Tracker</h3>
             <hr />
             <BugStats bugs={bugs} />
             <BugSort />
-            <BugEdit addNew={addNew} />
+            <BugEdit addNew={addNew} projects={projects} />
             <BugList {...{bugs, toggle, remove, removeClosed}} />
           </div>
         );
@@ -29,8 +29,9 @@ class BugTracker extends Component{
 }
 
 function mapStateToProps(storeState){
-  const bugs = storeState.bugsState;
-  return { bugs : bugs };
+  const bugs = storeState.bugsState,
+    projects = storeState.projectsState;
+  return { bugs : bugs, projects : projects };
 }
 
 function mapDispatchToProps(dispatch){
