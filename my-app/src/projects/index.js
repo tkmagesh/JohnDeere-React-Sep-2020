@@ -1,31 +1,33 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import projectActionCreators from './actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-class Projects extends Component{
-    componentDidMount(){
-        this.props.load();
-    }
-    render(){
-        const { projects } = this.props,
-          projectItems = projects.map(project => (
-            <li key={project.id}>
-              <div>{project.name} - ({project.bugsCount})</div>
-              <Link to="/bugs">Bugs</Link>
-            </li>
-          ));
-        return(
-            <div>
-                <h3>Projects</h3>
-                <hr/>
-                <ol>
-                    {projectItems}
-                </ol>
-            </div>
-        )
-    }
+const Projects = ({ projects, load }) => {
+    useEffect(() => {
+      //this function will be executed when the component is mounted / updated
+      load();
+      return () => {
+        //this function will be executed when the component is unmounted
+        console.log('Projects component is unmounted');
+      }
+    },[load] /* list the of dependencies when changed we want the top function to be executed */)
+    const projectItems = projects.map(project => (
+      <li key={project.id}>
+        <div>{project.name} - ({project.bugsCount})</div>
+        <Link to="/bugs">Bugs</Link>
+      </li>
+    ));
+    return(
+        <div>
+            <h3>Projects</h3>
+            <hr/>
+            <ol>
+                {projectItems}
+            </ol>
+        </div>
+    );
 }
 
 function mapStateToProps(storeState){
