@@ -1,15 +1,6 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import rootMiddleware from '../middlewares';
-
-
-import bugsReducer from '../reducers/bugsReducer';
-import projectsReducer from '../reducers/projectsReducer';
-
-const rootReducer = combineReducers({
-  bugsState : bugsReducer,
-  projectsState : projectsReducer
-});
-
+import rootReducer from '../reducers';
 
 const store = createStore(rootReducer, rootMiddleware); 
 
