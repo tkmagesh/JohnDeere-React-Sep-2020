@@ -1,20 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import store from "./store";
 
+import Home from './Home';
 import BugTracker from './bugTracker';
 import Projects from './projects';
+import BugInfo from './bugTracker/views/BugInfo';
 
   ReactDOM.render(
     <Provider store={store}>
       <React.StrictMode>
-        <h1>My App</h1>
-        <Projects />
-        <BugTracker />
+        <Router>
+          <h1>My App</h1>
+          <div>
+            <span>
+              {" "}
+              [ <Link to="/">Home</Link> ]{" "}
+            </span>
+            <span>
+              {" "}
+              [ <Link to="/projects">Projects</Link> ]{" "}
+            </span>
+            <span>
+              {" "}
+              [ <Link to="/bugs">Bugs</Link> ]{" "}
+            </span>
+          </div>
+          <Switch>
+            <Route path="/projects">
+              <Projects />
+            </Route>
+            <Route path="/bugs/:id">
+              <BugInfo/>
+            </Route>
+            <Route path="/bugs">
+              <BugTracker />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
       </React.StrictMode>
     </Provider>,
     document.getElementById("root")

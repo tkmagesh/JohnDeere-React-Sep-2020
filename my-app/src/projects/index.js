@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import projectActionCreators from './actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 class Projects extends Component{
     componentDidMount(){
@@ -11,7 +12,8 @@ class Projects extends Component{
         const { projects } = this.props,
           projectItems = projects.map(project => (
             <li key={project.id}>
-              <span>{project.name} - ({project.bugsCount})</span>
+              <div>{project.name} - ({project.bugsCount})</div>
+              <Link>Bugs</Link>
             </li>
           ));
         return(
@@ -33,7 +35,7 @@ function mapStateToProps(storeState){
     projects: projects.map(project => ({
       ...project,
       bugsCount: bugs.reduce(
-        (result, bug) => (bug.projectId == project.id ? result + 1 : result),
+        (result, bug) => (parseInt(bug.projectId) === project.id ? result + 1 : result),
         0
       )
     }))

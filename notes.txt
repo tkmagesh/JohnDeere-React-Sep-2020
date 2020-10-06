@@ -210,3 +210,16 @@ react-redux
 npm install react-redux
 OR
 yarn add react-redux
+
+
+Routing
+npm install react-router-dom
+OR
+yarn add react-router-dom
+
+
+
+After training assignments
+1. Implement sorting
+2. Display information about the selected bug in the BugInfo component
+3. When navigated to BugTracker component from 'Projects' component, display only the bugs for that project
