@@ -198,3 +198,15 @@ Presentation Component / Dumb component
 Assignment
     Implement "listing, adding and removing projects"
     
+
+react-redux
+    connect (HOC)
+        extracting data to be passed to the component
+        creating action dispatchers to be passed to the component
+
+    Provider
+        makes the redux store available to the connected (above) components
+
+npm install react-redux
+OR
+yarn add react-redux

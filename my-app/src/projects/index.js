@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import projectActionCreators from './actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class Projects extends Component{
+class Projects extends Component{
     componentDidMount(){
         console.log('triggering load action');
         this.props.load();
@@ -23,3 +26,15 @@ export default class Projects extends Component{
         )
     }
 }
+
+function mapStateToProps(storeState){
+  const projects = storeState.projectsState;
+  return {projects : projects}
+}
+
+function mapDispatchToProps(dispatch){
+  const projectActionDispatchers = bindActionCreators(projectActionCreators, dispatch);
+  return projectActionDispatchers;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);

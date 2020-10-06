@@ -1,36 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { bindActionCreators } from 'redux';
+import { Provider } from 'react-redux';
 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import store from "./store";
 
 import BugTracker from './bugTracker';
-import bugActionCreators from './bugTracker/actions';
-
 import Projects from './projects';
-import projectActionCreators from './projects/actions';
 
-const projectActionDispatchers = bindActionCreators(projectActionCreators, store.dispatch);
-const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
-
-function renderApp(){
-  const storeState = store.getState(),
-    bugs = storeState.bugsState,
-    projects = storeState.projectsState;
   ReactDOM.render(
-    <React.StrictMode>
-      <h1>My App</h1>
-      <Projects projects={projects} {...projectActionDispatchers} />
-      <BugTracker bugs={bugs} {...bugActionDispatchers} />
-    </React.StrictMode>,
+    <Provider store={store}>
+      <React.StrictMode>
+        <h1>My App</h1>
+        <Projects />
+        <BugTracker />
+      </React.StrictMode>
+    </Provider>,
     document.getElementById("root")
   );
-}
 
-renderApp();
-store.subscribe(renderApp);
+
 
 
 /* 
