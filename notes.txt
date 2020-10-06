@@ -235,3 +235,33 @@ React Hooks
         useMemo
         useReducer
         useRef
+
+Packaging a web app
+    Compile JSX
+    minify the js
+    uglify the js 
+    bundle the js
+    version the js
+
+    compile scss/less/compass
+    minify the css
+    bundle the css
+    version the css
+
+    updated the references of the build generated js & css files in the index.html
+    minify the index.html
+    
+    the final generated resources need to copied to the build folder for deployment
+
+
+    npm run build
+    OR
+    yarn build
+
+
+    http://bit.ly/react-videos
+    http://bit.ly/javascript-training-videos
+
+    tkmagesh77@gmail.com
+    99019-11221
+    
