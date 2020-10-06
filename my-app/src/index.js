@@ -1,21 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
-import axios from 'axios';
 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import BugTracker from './bugTracker';
-import store from './store';
-import bugActionCreators from './bugTracker/actions';
+import store from "./store";
 
+/* import BugTracker from './bugTracker';
+import bugActionCreators from './bugTracker/actions';
 const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
+ */
+
+ import Projects from './projects';
+ import projectActionCreators from './projects/actions';
+ const projectActionDispatchers = bindActionCreators(projectActionCreators, store.dispatch);
 
 function renderApp(){
-  const bugs = store.getState();
+  console.log('rendering app');  
+  //const bugs = store.getState();
+  const projects = store.getState();
   ReactDOM.render(
     <React.StrictMode>
-      <BugTracker bugs={bugs} {...bugActionDispatchers} />
+      {/* <BugTracker bugs={bugs} {...bugActionDispatchers} /> */}
+      <Projects projects={projects} {...projectActionDispatchers} />
     </React.StrictMode>,
     document.getElementById('root')
   );
