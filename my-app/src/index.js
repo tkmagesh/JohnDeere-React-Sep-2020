@@ -6,25 +6,26 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import store from "./store";
 
-/* import BugTracker from './bugTracker';
+import BugTracker from './bugTracker';
 import bugActionCreators from './bugTracker/actions';
-const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
- */
 
- import Projects from './projects';
- import projectActionCreators from './projects/actions';
- const projectActionDispatchers = bindActionCreators(projectActionCreators, store.dispatch);
+import Projects from './projects';
+import projectActionCreators from './projects/actions';
+
+const projectActionDispatchers = bindActionCreators(projectActionCreators, store.dispatch);
+const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
 
 function renderApp(){
-  console.log('rendering app');  
-  //const bugs = store.getState();
-  const projects = store.getState();
+  const storeState = store.getState(),
+    bugs = storeState.bugsState,
+    projects = storeState.projectsState;
   ReactDOM.render(
     <React.StrictMode>
-      {/* <BugTracker bugs={bugs} {...bugActionDispatchers} /> */}
+      <h1>My App</h1>
       <Projects projects={projects} {...projectActionDispatchers} />
+      <BugTracker bugs={bugs} {...bugActionDispatchers} />
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById("root")
   );
 }
 
