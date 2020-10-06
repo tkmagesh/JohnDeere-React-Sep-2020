@@ -223,3 +223,15 @@ After training assignments
 1. Implement sorting
 2. Display information about the selected bug in the BugInfo component
 3. When navigated to BugTracker component from 'Projects' component, display only the bugs for that project
+4. Implement pagination in BugTracker component
+
+
+React Hooks
+    functions that manage side effects for a functional component
+    hook functions must start with the word 'use'
+    built in hooks in React
+        useState
+        useEffect
+        useMemo
+        useReducer
+        useRef

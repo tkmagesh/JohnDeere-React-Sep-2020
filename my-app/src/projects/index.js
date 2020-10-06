@@ -13,7 +13,7 @@ class Projects extends Component{
           projectItems = projects.map(project => (
             <li key={project.id}>
               <div>{project.name} - ({project.bugsCount})</div>
-              <Link>Bugs</Link>
+              <Link to="/bugs">Bugs</Link>
             </li>
           ));
         return(
