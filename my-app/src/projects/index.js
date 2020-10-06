@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 
 class Projects extends Component{
     componentDidMount(){
-        console.log('triggering load action');
         this.props.load();
     }
     render(){
